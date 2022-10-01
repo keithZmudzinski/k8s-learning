@@ -1,10 +1,14 @@
+version: "3"
+
 services:
   main-server:
     image: k8s-learning/main-server
     build:
       context: main-server
     volumes:
-      - ./.:/main-server
+      - ./main-server:/main-server
     ports:
-      - 5000:5000
-    command: /bin/bash
+      - "8000:8000"
+    command: ["/bin/bash", "-c", "python manage.py runserver 0.0.0.0:8000"]
+    stdin_open: true
+    tty: true
