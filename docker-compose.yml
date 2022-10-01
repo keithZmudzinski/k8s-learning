@@ -1,0 +1,10 @@
+services:
+  main-server:
+    image: k8s-learning/main-server
+    build:
+      context: main-server
+    volumes:
+      - ./.:/main-server
+    ports:
+      - 5000:5000
+    command: /bin/bash
