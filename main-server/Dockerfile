@@ -5,4 +5,4 @@ RUN python -m pip install Django
 COPY app-files /app-files
 WORKDIR /app-files
 
-CMD "python manage.py runserver"
+CMD ["/bin/bash", "-c", "python manage.py runserver"]
