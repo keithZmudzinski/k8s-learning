@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: main-server
+  name: main-server
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-server
+  template:
+    metadata:
+      labels:
+        app: main-server
+      name: main-server
+      namespace: development
+    spec:
+      containers:
+        - image: localhost:5000/main-server:latest
+          name: main-server
+          ports:
+            - containerPort: 8000
+
