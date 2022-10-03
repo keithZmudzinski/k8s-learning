@@ -12,3 +12,14 @@ services:
     command: ["/bin/bash", "-c", "cd /main-server/app-files && python manage.py runserver 0.0.0.0:8000"]
     stdin_open: true
     tty: true
+  receiver:
+    image: k8s-learning/receiver
+    build:
+      context: runner/receiver
+    volumes:
+      - ./runner/receiver:/receiver/runner
+    ports:
+      - "8000:8000"
+    command: ["/bin/bash", "-c", "cd /receiver/runner/app-files && python manage.py runserver 0.0.0.0:8000"]
+    stdin_open: true
+    tty: true

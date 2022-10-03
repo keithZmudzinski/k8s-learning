@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: runner-ubuntu
+  name: runner-ubuntu
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: runner-ubuntu
+  template:
+    metadata:
+      labels:
+        app: runner-ubuntu
+      name: runner-ubuntu
+      namespace: development
+    spec:
+      containers:
+        - image: localhost:5000/runner/receiver:latest
+          name: receiver
+          ports:
+            - containerPort: 8000
+        # Maybe better way to do this is with job
+        # - image: localhost:5000/runner/executor:latest
+        #   name: executor
+        #   ports:
+        #     - containerPort: 22
